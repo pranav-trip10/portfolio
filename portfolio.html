@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pranav Tripathi Mechanical Engineering Portfolio</title>
+  
+  <!-- GOOGLE FONTS: Space Grotesk (Headings), Inter (Body), JetBrains Mono (Tech Metadata) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- CSS RESET & THEME VARIABLES --- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #f8fafc;
+      --bg-alt: #ffffff;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      --border-accent: #cbd5e1;
+      --primary: #1e3a8a; /* Berkeley Blue */
+      --primary-light: #eff6ff;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      
+      --font-heading: 'Space Grotesk', -apple-system, sans-serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--text);
+      background-color: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* --- HEADER / HERO --- */
+    header {
+      padding: 4.5rem 0 3.5rem;
+      background: linear-gradient(180deg, #edf2f7 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: 2.65rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      font-size: 1.125rem;
+      color: var(--primary);
+      margin-top: 0.5rem;
+      font-weight: 600;
+    }
+
+    .contact-links {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      text-align: right;
+      background: #ffffff;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    }
+
+    .contact-links .resume-btn {
+      color: var(--accent);
+      font-weight: normal;
+      background: none;
+      padding: 0;
+      border: none;
+      display: inline;
+    }
+
+    .contact-links .resume-btn:hover {
+      background-color: #dbeafe;
+      color: var(--accent-hover);
+      text-decoration: none;
+    }
+
+    /* --- SUMMARY & SKILLS SECTION --- */
+    .intro-section {
+      padding: 3rem 0;
+      background-color: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-summary {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 2.25rem;
+      max-width: 920px;
+      border-left: 4px solid var(--accent);
+      padding: 0.5rem 0 0.5rem 1.25rem;
+      background: linear-gradient(90deg, var(--primary-light) 0%, transparent 100%);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .skill-group h3 {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    /* DYNAMIC SKILL TAG HOVER EFFECT */
+    .tag {
+      font-size: 0.8125rem;
+      background: #ffffff;
+      border: 1px solid var(--border-accent);
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      color: var(--text);
+      font-weight: 500;
+      cursor: default;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .tag:hover {
+      background-color: var(--primary-light);
+      border-color: #93c5fd;
+      color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 2px 5px rgba(37, 99, 235, 0.12);
+    }
+
+    /* --- PROJECTS SECTION --- */
+    .projects-header {
+      padding: 3.5rem 0 1.5rem;
+    }
+
+    .projects-header h2 {
+      font-family: var(--font-heading);
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      position: relative;
+      display: inline-block;
+    }
+
+    .projects-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 40%;
+      height: 3px;
+      background-color: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* PROJECT CARD ENHANCEMENTS */
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+    }
+
+    /* ALTERNATING DESKTOP LAYOUT */
+    @media (min-width: 768px) {
+      .project-card {
+        grid-template-columns: 1fr 1fr;
+        align-items: center; /* Vertically centers the text and images */
+      }
+
+      /* Card 1, 3, 5: Media on Left, Text on Right */
+      .project-card:nth-of-type(odd) .project-media {
+        order: 1;
+      }
+      .project-card:nth-of-type(odd) .project-info {
+        order: 2;
+      }
+
+      /* Card 2, 4, 6: Text on Left, Media on Right */
+      .project-card:nth-of-type(even) .project-media {
+        order: 2;
+      }
+      .project-card:nth-of-type(even) .project-info {
+        order: 1;
+      }
+    }
+
+    .project-info h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    .project-role {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--primary);
+      background-color: var(--primary-light);
+      border: 1px solid #dbeafe;
+      padding: 0.2rem 0.65rem;
+      border-radius: 4px;
+      margin-bottom: 1.25rem;
+      font-weight: 500;
+    }
+
+    .project-bullets {
+      list-style-type: disc;
+      padding-left: 1.25rem;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .project-bullets li {
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+
+    .project-media {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .media-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .media-container {
+      background-color: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: border-color 0.2s ease;
+    }
+
+    .media-container:hover {
+      border-color: #cbd5e1;
+    }
+
+    .media-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .placeholder-box {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg);
+      border: 1px dashed var(--border-accent);
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .image-caption {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      padding: 0.6rem 0.85rem;
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      padding: 4rem 0;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      border-top: 1px solid var(--border);
+      background: var(--bg-alt);
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 640px) {
+      .contact-links {
+        text-align: left;
+      }
+      .project-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER / HERO -->
+  <header>
+    <div class="container header-content">
+      <div>
+        <h1>Pranav Tripathi</h1>
+        <p class="subtitle">UC Berkeley | Class of 2028 | Regents' & Chancellor's Scholar<br>Mechanical Engineering, EECS, and Music</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:pranav_trip@berkeley.edu">pranav_trip@berkeley.edu</a>
+        <a href="https://linkedin.com/in/pranav-trip" target="_blank">linkedin.com/in/pranav-trip</a>
+        <a href="UCB_PT_Resume_Fall_26.pdf" target="_blank" class="resume-btn">View my Resume</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SUMMARY & SKILLS -->
+  <section class="intro-section">
+    <div class="container">
+      
+      <!-- 2-Sentence Summary Bio -->
+      <div class="about-summary">
+        I am a student at UC Berkeley, majoring in mechanical engineering, and minoring in electrical engineering/computer science (EECS) and music. My interests are primarily in mechanical design optimization and autonomous robotic perception and control. At Berkeley I am an engineering consultant and robotics researcher, and I am concurrently working on my robotics startup, Frostbyte. Read below to learn about my skills and experience!
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Mechanical Design & FEA</h3>
+          <div class="tag-container">
+            <span class="tag">SolidWorks</span>
+            <span class="tag">Fusion360</span>
+            <span class="tag">OnShape</span>
+            <span class="tag">FEA & Topology</span>
+            <span class="tag">GD&T/Drawings</span>
+            <span class="tag">DFM & DFA</span>
+            <span class="tag">Precision Machining</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Programming & Electronics</h3>
+          <div class="tag-container">
+            <span class="tag">Python</span>
+            <span class="tag">C++</span>
+            <span class="tag">MATLAB</span>
+            <span class="tag">Java</span>
+            <span class="tag">GitHub (Repo Management)</span>
+            <span class="tag">Sensor Integration</span>
+            <span class="tag">Circuitry/PCB</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Robotics</h3>
+          <div class="tag-container">
+            <span class="tag">ROS2 Nodes</span>
+            <span class="tag">Simulations</span>
+            <span class="tag">Computer Vision (OpenCV)</span>
+            <span class="tag">Kinematics</span>
+            <span class="tag">Controls (PID, Odometry)</span>
+            <span class="tag">Signal Filtering</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <main class="container">
+    <div class="projects-header">
+      <h2>Engineering Projects</h2>
+    </div>
+
+    <!-- 1. Frostbyte Technologies -->
+    <article class="project-card">
+      <div class="project-info">
+        <h3>Frostbyte Technologies</h3>
+        <p class="project-role">Co-Founder | June 2024 – Present</p>
+        <ul class="project-bullets">
+          <p> I created Frostbyte Technologies to develop an autonomous robot to clear snow ice and ice from sidewalks, with the goal of improving pedestrian safety in my community during the winter.</p><br>
+          <p> The design includes 6 main components:</p><br>
+          <li> A high-torque, 4-motor drivetrain with traction wheels from a snow blower and custom-designed hubs for mounting. ~1.5x2 feet, compact and maneuverable even in tight spaces.</li>
+          <li> A 2-foot plow with a double-funnel shape to push snow off to the sides. It also contains passive wheels for slight clearance off the ground.</li>
+          <li> A ~10 L tank to hold calcium chloride pellets for de-icing, with a motorized dispensing mechanism at the bottom. Capable of covering 400+ square feet.</li>
+          <li> An electronics casing for our battery, voltage converters, microcontroller, and other components. Fully enclosed and sealed to ensure protection against water and weather.</li>
+          <li> A mount for the camera which will enable obstacle avoidance through built-in obstacle detection features. Currently working on making this system more robust for outdoor use.</li>
+        </ul>
+      </div>
+      <div class="project-media">
+        <div class="media-container">
+          <img src="Frostbyte CAD Assembly Diagram.jpg" alt="Frostbyte CAD Assembly Diagram">
+          <div class="image-caption">Full CAD Assembly & Sub-Components</div>
+        </div>
+        <div class="media-container">
+          <img src="Frostbyte Physical Prototype.jpg" alt="Frostbyte Physical Prototype">
+          <div class="image-caption">Fabricated Physical Prototype (3D Printed)</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. D&Y Nexus Labs -->
+    <article class="project-card">
+      <div class="project-info">
+        <h3>D&Y Nexus Labs</h3>
+        <p class="project-role">Engineering Consultant | August 2026 – Present</p>
+        <ul class="project-bullets">
+          <p> I am consulting the Berkeley-based startup D&Y Nexus Labs to design and maufacture an automated methane flux monitoring system with IP54 Water Resistance. This product elimates the need for laborious and hazarous manual gas sampling in remote locations.</p><br>
+          <p> The chamber lid is an dome printed from ASA, a UV and weather-resistant material. It contains slots along the circumference for a strap clamp to secure it against the chamber body and compress the gasket. The gasket is machined from 50 Shore A Neoprene, a moderately rigid material for a strong and reliable seal.</p><br>
+          <p> The inside of the chamber is hollow to allow methane build-up, and includes methane, CO2, humidity, & temp sensors. These sensors connect to a control box for methane calculations and transmits data to an IoT server for remote monitoring.</p><br>
+          <p> Alongside the design, I maintained a detailed BOM and optimized materials/manufacturing methods for cost, and led physics analysis and documentation of our design choices.</p><br>
+        </ul>
+      </div>
+      <div class="project-media">
+          <div class="media-row">
+            <div class="media-container">
+              <img src="DY CAD.png" alt="Methane Flux Module CAD Design">
+              <div class="image-caption">Methane Flux Module CAD Design</div>
+            </div>
+            <div class="media-container">
+              <img src="DY Cross Section.png" alt="Cross Section of Chamber, Gasket, and Lid">
+              <div class="image-caption">Cross Section of Chamber, Gasket, and Lid</div>
+            </div>
+          </div>
+          <div class="placeholder-box" style="height: 250px;">
+    Physical model coming in 2-3 weeks!
+          </div>
+        </div>
+    </article>
+
+    <!-- 3. Engineering Solutions @ Berkeley -->
+    <article class="project-card">
+      <div class="project-info">
+        <h3>Engineering Solutions @ Berkeley</h3>
+        <p class="project-role">Technical Member | August 2026 – September 2026</p>
+        <ul class="project-bullets">
+          <p> I am a member of Engineering Solutions @ Berkeley, working on end-to-end product development through real-world engineeirng practices. For my first project I developed Crank N' Clean, a mechanical water filter for emergency zones & remote areas with no electricity or pressurized water sources.</p><br>
+          <p> The design contains several unique mechanical features:</p><br>
+          <li> A driving shaft with 3 methods of power input: a hand crank for manual input, a 1/2" pitch sprocket for bikes or external cranks, and a 5/8" hex shaft extrusion for a drill or other electronic input.</li>
+          <li> A 1:2 gear ratio to dual-lobed cams that compress the pump chamber and create suction. Displaces ~0.46 cb. liters per rotation, for a throughput of 14+ liters/min.</li>
+          <li> A pump chamber with a 5" santoprene diaphragm driven by the cams, and one-way ball valves to create suction and pressurize the water</li>
+          <li> A two-stage filter system (10 micron, 0.2 micron) to eliminate >98% of particles and pathogens, and an integrated backwash sysetm to clean the device and prolong its lifetime.</li>
+          <li> A torsion spring that winds and stores power, and continues to operate the pump for 5+ minutes after external power input ends (for an output of 70+ liters).</li>
+        </ul>
+      </div>
+      <div class="project-media">
+        <div class="media-container">
+          <img src="Pump External.png" alt="Crank N Clean Filter Assembly">
+          <div class="image-caption">Crank N' Clean Outer Enclosure & Ergonomic Casing CAD</div>
+        </div>
+        <div class="media-container">
+          <img src="Pump Internal.jpg" alt="Internal Drive Mechanism CAD">
+          <div class="image-caption">Internal Gear Train, Bearings, & Drive Shaft Detail</div>
+        </div>
+      </div>
+    </article>
+
+<main class="container">
+    <div class="projects-header">
+      <h2>Research Projects</h2>
+    </div>
+
+    <!-- 1. Embodied Dexterity Group -->
+    <article class="project-card">
+      <div class="project-info">
+        <h3>Embodied Dexterity Group</h3>
+        <p class="project-role">Undergraduate Design Lead | August 2025 – Present</p>
+        <ul class="project-bullets">
+          <p> I am a member of the Embodied Dexterity Group, working as the undergraduate design lead on the QUAD Hand sponsored by General Motors - an 11 DoF/8DoA robotic hand being developed for generalized dextrous object manipulation.</p><br>
+          <p> My main focus on this project is on optimizing the design of several linkages for a combination of greater strength and dexterity, as well as robust large-scale manufacturing. </p><br>
+          <p> I reinforced linkages in the thumb and pointer finger that use QDD servos for high dexterity and precise control, while fitting in space contraints. I am also developing a novel assymetric linkage between the middle and ring fingers that allows both simulatenousl and independent actuation by decoupling when grasping non-uniform objects.</p><br>
+          <p> A key contribution of my work was DFM and DFA, switching from complex 3D-printed linkages to simplified 2D geometries for machining. The machined internals provide greater strength and precision along with simpler manufacturing.</p><br>
+          <p> Another important consideration was the kinematic constraints of the hand. Given key states that the hand needed to obtain, I used basic rigid-body kinematic equations to determine the geometries of various internal linkages. One example of this is the ring finger abduction joint, which use the relative motion of the ring finger when it decouples from the middle finger to make it curl inwards and provide a stronger grip.</p>
+        </ul>
+      </div>
+      <div class="project-media">
+	<div class="media-row">
+            <div class="media-container">
+              <img src="Hand CAD.jpg" alt="11 DoF Robotic Hand Visual">
+              <div class="image-caption">QUAD Hand CAD Model</div>
+            <div class="media-container">
+              <img src="Physical Hand.png" alt="Hand Model">
+              <div class="image-caption">Physical Hand Model</div>
+            </div>
+          </div>
+        <div class="media-container">
+        </div>
+        <div class="media-container">
+          <img src="Hand Linkage.png" alt="Linkage Detail View">
+          <div class="image-caption">Internal 2D Machined Linkages & Coupling Mechanism</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. Boston University Robotics Lab -->
+    <article class="project-card">
+      <div class="project-info">
+        <h3>Boston University Robotics Lab</h3>
+        <p class="project-role">Mechanical Engineering Intern | June 2025 – August 2025</p>
+        <ul class="project-bullets">
+          <p> I spent a summer interning at the Boston University Robotics Lab, conducting my research project "Autonomous Path-Following via Optical Flow of Environmental Features" which aims to enable autonomous navigation and course-correction using solely visual input from a camera. My project entailed research/calculations, simulations, and finally to real-world testing.</p><br>
+          <li> I began by researching inverse-kinematics and camera projections, to obtain the relative position of a device from points in the environment.</li>
+          <li> I coded Python simulations using Numpy and Matplotlib to calculate the velocity of points on a path relative to a moving device, and used this to course-correct. I also applied this to non-linear paths, successfully adjusting to curves and bends.</li>
+          <li> For physical testing, I obtained the optical flow of AprilTags along a path boundary using OpenCV. I also created a mask to track points selectively and exclude extreme velocities.</li>
+          <li> To smoothen the correction I a Gaussian kernel for normalization, a min-max algorithm for compression, and a MAD outlier filter.</li>
+          <li> Ultimately my algorithm succesfully navigated paths with <18% deviation from the centerline under my testing parameters.</li>
+        </ul>
+      </div>
+      <div class="project-media">
+        <div class="media-container">
+          <img src="BU Calculations.jpg" alt="Optical Flow Velocity Normalization Graphs">
+          <div class="image-caption">Gaussian Normalization & MAD Outlier Filtering Analytics</div>
+        </div>
+        <div class="media-container">
+          <img src="BU Sims.jpg" alt="Drone Tracking Point Simulation">
+          <div class="image-caption">Optical Flow Control Fields & Curved Path Tracking Masks</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. Lake Washington Tech Math Dept. -->
+    <article class="project-card">
+      <div class="project-info">
+        <h3>Lake Washington Tech Math Dept.</h3>
+        <p class="project-role">Assistant Researcher | December 2025 – May 2026</p>
+        <ul class="project-bullets">
+          <p> I spent two quarters at the Math Department at the Lake Washington Institute of Technology, working on optimized algorithms for efficient pathfinding via minimal computations.</p><br>
+          <p> I first created  Python simulations of popular shortest-path algorithms Dijkstra's and A* using data structures such as queues and linked lists, and implemented extensions to these algorithms such as Bidirectional A*, which runs A* from both ends of a search for increased efficiency.</p><br>
+          <p> I then developed "Convergent Bidirectoinal A*", which employs Bidirectional A* with additional heuristic parameters, prioritizing paths that draw the ends of the search together and that have more open neighber nodes.My algorithm performed 93% more efficiently than Dijkstra's algorithm and 52% more than A* across dozens of trials.</p><br>
+        </ul>
+      </div>
+      <div class="project-media">
+        <div class="media-container">
+          <img src="Search Algorithms.jpg" alt="Search Algorithm Comparison Plots">
+          <div class="image-caption">Benchmark Matrix: Dijkstra, A*, Bidirectional A*, and Convergent Bidirectional A*</div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Pranav Tripathi 2026 &bull; Built by Google Gemini</p>
+    </div>
+  </footer>
+
+</body>
+</html>
